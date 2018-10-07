@@ -17,6 +17,8 @@ def echo(message: str, charset: str = ALL_CHARS, speed: float = 0.05,
          iterations: int = 2) -> None:
     """Scrambl print the given message."""
     # strip \n and \r from charset
+    if not charset:
+        charset = ALL_CHARS
     charset = charset.replace('\n', '').replace('\r', '')
     for line in message.split('\n'):
         echoed = ''
@@ -27,7 +29,7 @@ def echo(message: str, charset: str = ALL_CHARS, speed: float = 0.05,
                 time.sleep(speed)
 
             echoed += char
-            # this logic is to lines larger than the console format nicely
+            # this logic is so lines larger than the console format nicely
             if len(echoed) >= COLS - 1:
                 click.echo('\r' + echoed)
                 echoed = ''

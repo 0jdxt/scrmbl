@@ -12,7 +12,7 @@ import scrmbl
               help='Number of iterations per character. Default: 2')
 @click.option('-c', '--chars', type=click.Path(
     exists=True, allow_dash=True, dir_okay=False,
-), help='Set of chars to scramble. Default: {0}'.format(scrmbl.ALL_CHARS))
+), help='Set of chars to scramble.')
 # @click.version_option(version=scrmbl.__version__)
 @click.version_option(version='0.1.1')  # cant find scrmbl__version__
 def cli(text_in, speed, niter, chars):
@@ -28,6 +28,9 @@ def cli(text_in, speed, niter, chars):
         with click.open_file(chars) as f:
             charset = f.read()
     else:
-        charset = scrmbl.ALL_CHARS
+        charset = ''
 
     scrmbl.echo(text_in.strip(), charset=charset, speed=speed, iterations=niter)
+
+if __name__ == '__main__':
+    cli()

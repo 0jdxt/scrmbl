@@ -20,4 +20,4 @@ flake8 = "^3.5"
 coveralls = "^1.5"
 
 [tool.poetry.scripts]
-scrmbl = 'scrmbl:scrmbl.cli'
+scrmbl = 'scrmbl:cli'
