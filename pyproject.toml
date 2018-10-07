@@ -18,6 +18,7 @@ click = "^7.0"
 pytest = "*"
 flake8 = "^3.5"
 coveralls = "^1.5"
+pytest-cov = "^2.6"
 
 [tool.poetry.scripts]
 scrmbl = 'scrmbl:cli'

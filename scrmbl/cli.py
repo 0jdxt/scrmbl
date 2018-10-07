@@ -2,7 +2,8 @@ import sys
 
 import click
 
-import scrmbl
+from scrmbl.main import echo
+import scrmbl.version
 
 
 @click.command()
@@ -14,8 +15,7 @@ import scrmbl
 @click.option('-c', '--chars', type=click.Path(
     exists=True, allow_dash=True, dir_okay=False,
 ), help='Set of chars to scramble.')
-# @click.version_option(version=scrmbl.__version__)
-@click.version_option(version='0.1.1')  # cant find scrmbl__version__
+@click.version_option(version=scrmbl.version.__version__)
 def cli(text_in, speed, nit, chars):
     """Click cli endpoint."""
     if not text_in:  # no text input
@@ -31,8 +31,9 @@ def cli(text_in, speed, nit, chars):
     else:
         charset = ''
 
-    scrmbl.echo(text_in.strip(), charset=charset, speed=speed, iterations=nit)
+    echo(text_in.strip(), charset=charset, speed=speed, iterations=nit)
 
 
 if __name__ == '__main__':
+    # for debugging >.\cli.py testing
     cli()
