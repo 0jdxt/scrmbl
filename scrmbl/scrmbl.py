@@ -5,6 +5,8 @@ import sys
 
 import click
 
+__version__ = '0.1.1'
+
 random.seed()
 
 ALL_CHARS = string.digits + string.ascii_letters + string.punctuation
@@ -32,14 +34,15 @@ def echo(message:str, charset:str=ALL_CHARS, speed:float=0.05, iterations:int=2)
 
 
 @click.command()
-@click.argument('textin', default='')
+@click.argument('text_in', default='')
 @click.option('-s', '--speed', type=click.FLOAT, default=0.05)
 @click.option('-i', '--iter', 'niter', type=click.INT, default=2)
 @click.option('-c', '--chars', type=click.Path(
     exists=True, allow_dash=True, dir_okay=False
 ))
-def cli(textin, speed, niter, chars):
-    if not textin: # no text input
+@click.version_option(version=__version__)
+def cli(text_in, speed, niter, chars):
+    if not text_in: # no text input
         if sys.stdin.isatty() or chars == '-': # if no stdin or '-c -'
             raise click.UsageError('Need TEXTIN or stdin')
 
@@ -52,7 +55,7 @@ def cli(textin, speed, niter, chars):
     else:
         charset = ALL_CHARS
 
-    echo(textin.strip(), charset=charset, speed=speed, iterations=niter)
+    echo(text_in.strip(), charset=charset, speed=speed, iterations=niter)
 
 if __name__ == '__main__':
     cli()

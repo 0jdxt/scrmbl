@@ -1,5 +1,3 @@
-from scrmbl.scrmbl import echo
+from scrmbl.scrmbl import echo, __version__
 
 __all__ = ['echo']
-
-__version__ = '0.1.1'
