@@ -44,7 +44,7 @@ def echo(message:str, charset:str=ALL_CHARS, speed:float=0.05, iterations:int=2)
 def cli(text_in, speed, niter, chars):
     if not text_in: # no text input
         if sys.stdin.isatty() or chars == '-': # if no stdin or '-c -'
-            raise click.UsageError('Need TEXTIN or stdin')
+            raise click.UsageError('Need TEXT_IN or stdin input.')
 
         for line in sys.stdin:
             textin += line
