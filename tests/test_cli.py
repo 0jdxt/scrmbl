@@ -2,6 +2,7 @@ from click.testing import CliRunner
 
 from scrmbl.cli import cli
 
+
 def test_hello_world():
     runner = CliRunner()
     result = runner.invoke(cli, ['Hello, world!'])
