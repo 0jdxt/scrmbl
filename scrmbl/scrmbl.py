@@ -35,11 +35,13 @@ def echo(message:str, charset:str=ALL_CHARS, speed:float=0.05, iterations:int=2)
 
 @click.command()
 @click.argument('text_in', default='')
-@click.option('-s', '--speed', type=click.FLOAT, default=0.05)
-@click.option('-i', '--iter', 'niter', type=click.INT, default=2)
+@click.option('-s', '--speed', type=click.FLOAT, default=0.05,
+                help="Time in seconds between prints. Default: 0.05")
+@click.option('-i', '--iter', 'niter', type=click.INT, default=2,
+                help="Number of iterations per character. Default: 2")
 @click.option('-c', '--chars', type=click.Path(
     exists=True, allow_dash=True, dir_okay=False
-))
+), help="Set of chars to scramble. Default: {}".format(ALL_CHARS))
 @click.version_option(version=__version__)
 def cli(text_in, speed, niter, chars):
     if not text_in: # no text input
