@@ -1,4 +1,5 @@
 import sys
+import os
 
 import click
 
@@ -17,9 +18,9 @@ import scrmbl.version
 ), help='Set of chars to scramble.')
 @click.version_option(version=scrmbl.version.__version__)
 def cli(text_in, speed, nit, chars):
-    """Click cli endpoint."""
+    """Scrmbl print the given message."""
     if not text_in:  # no text input
-        if sys.stdin.isatty() or chars == '-':  # if no stdin or '-c -'
+        if sys.stdin.isatty() or chars == '-':  # if no stdin or just '-c -'
             raise click.UsageError('Need TEXT_IN or stdin input.')
 
         for line in sys.stdin:
