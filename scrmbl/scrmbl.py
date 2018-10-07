@@ -1,8 +1,8 @@
-"""scrambl printer."""
-
 import random
 import string
 import time
+
+import click
 
 random.seed()
 
