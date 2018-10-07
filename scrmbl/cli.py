@@ -4,18 +4,19 @@ import click
 
 import scrmbl
 
+
 @click.command()
 @click.argument('text_in', default='')
 @click.option('-s', '--speed', type=click.FLOAT, default=0.05,
               help='Time in seconds between prints. Default: 0.05')
-@click.option('-i', '--iter', 'niter', type=click.INT, default=2,
+@click.option('-i', '--iter', 'nit', type=click.INT, default=2,
               help='Number of iterations per character. Default: 2')
 @click.option('-c', '--chars', type=click.Path(
     exists=True, allow_dash=True, dir_okay=False,
 ), help='Set of chars to scramble.')
 # @click.version_option(version=scrmbl.__version__)
 @click.version_option(version='0.1.1')  # cant find scrmbl__version__
-def cli(text_in, speed, niter, chars):
+def cli(text_in, speed, nit, chars):
     """Click cli endpoint."""
     if not text_in:  # no text input
         if sys.stdin.isatty() or chars == '-':  # if no stdin or '-c -'
@@ -30,7 +31,8 @@ def cli(text_in, speed, niter, chars):
     else:
         charset = ''
 
-    scrmbl.echo(text_in.strip(), charset=charset, speed=speed, iterations=niter)
+    scrmbl.echo(text_in.strip(), charset=charset, speed=speed, iterations=nit)
+
 
 if __name__ == '__main__':
     cli()
