@@ -10,13 +10,13 @@ import scrmbl.version
 @click.argument('text_in', default='')
 @click.option('-s', '--speed', type=click.FLOAT, default=0.05,
               help='Time in seconds between prints. Default: 0.05')
-@click.option('-i', '--iter', 'nit', type=click.INT, default=2,
+@click.option('-i', '--iter', 'niter', type=click.INT, default=2,
               help='Number of iterations per character. Default: 2')
 @click.option('-c', '--chars', type=click.Path(
     exists=True, allow_dash=True, dir_okay=False,
 ), help='Set of chars to scramble.')
 @click.version_option(version=scrmbl.version.__version__)
-def cli(text_in, speed, nit, chars):
+def cli(text_in: str, speed: float, niter: int, chars: str):
     """Scrmbl print the given message."""
     if not text_in:  # no text input
         if sys.stdin.isatty() or chars == '-':  # if no stdin or just '-c -'
@@ -31,7 +31,7 @@ def cli(text_in, speed, nit, chars):
     else:
         charset = ''
 
-    echo(text_in.strip(), charset=charset, speed=speed, iterations=nit)
+    echo(text_in.strip(), charset=charset, speed=speed, iterations=niter)
 
 
 # for debugging >.\cli.py testing
