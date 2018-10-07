@@ -1,3 +1,5 @@
+import re
+
 from click.testing import CliRunner
 
 from scrmbl.cli import cli
@@ -14,7 +16,7 @@ def test_input_stream():
     with open('tests/lipsum.txt', 'r') as fin:
         data = fin.read()
     runner = CliRunner()
-    result = runner.invoke(cli, ['-s 0'], input=data)
+    result = runner.invoke(cli, ['-s', '0'], input=data)
 
     assert result.exit_code == 0
 
@@ -37,6 +39,16 @@ def test_input_stream():
 
 def test_invalid_cmd():
     runner = CliRunner()
-    result = runner.invoke(cli, ['-c -'])
+    result = runner.invoke(cli, ['-c', '-'], input='abcdefg')
     assert result.exit_code == 2
+    assert 'Usage:' in result.output
     assert 'Error' in result.output
+
+
+def test_charset():
+    runner = CliRunner()
+    result = runner.invoke(cli, ['-c', 'tests/chars.txt', 'test'])
+    assert result.exit_code == 0
+    for line in result.output.split('\r'):
+        if line:
+            assert re.match(r'^[tes]{0,4}[abcdefgh]?$', line)
