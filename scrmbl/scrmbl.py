@@ -16,8 +16,10 @@ except OSError: # not being run from terminal
     COLS = int(1e6)
 
 
-def echo(message:str, charset:str=ALL_CHARS, speed:float=0.05, iterations:int=2) -> None:
+def echo(message:str, charset: str=ALL_CHARS, speed: float=0.05,
+        iterations: int=2) -> None:
     "scrambl print the given message"
+    # strip \n and \r from charset
     charset = charset.replace('\n', '').replace('\r', '')
     for line in message.split('\n'):
         echoed = ''
@@ -27,6 +29,7 @@ def echo(message:str, charset:str=ALL_CHARS, speed:float=0.05, iterations:int=2)
                 time.sleep(speed)
 
             echoed += char
+            # this logic is to lines larger than the console format nicely
             if len(echoed) >= COLS - 1:
                 click.echo('\r' + echoed)
                 echoed=''
