@@ -47,7 +47,7 @@ def cli(text_in, speed, niter, chars):
             raise click.UsageError('Need TEXT_IN or stdin input.')
 
         for line in sys.stdin:
-            textin += line
+            text_in += line
 
     if chars:
         with click.open_file(chars) as f:
