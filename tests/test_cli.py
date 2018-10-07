@@ -1,6 +1,4 @@
-import click
 from click.testing import CliRunner
-import pytest
 
 from scrmbl.cli import cli
 
