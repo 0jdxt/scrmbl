@@ -9,6 +9,7 @@ random.seed()
 ALL_CHARS = string.digits + string.ascii_letters + string.punctuation
 COLS, _ = click.get_terminal_size()
 
+
 def echo(message: str, charset: str = ALL_CHARS, speed: float = 0.05,
          iterations: int = 2) -> None:
     """Scrambl print the given message."""
