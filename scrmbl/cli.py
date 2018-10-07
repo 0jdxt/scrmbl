@@ -34,6 +34,6 @@ def cli(text_in, speed, nit, chars):
     echo(text_in.strip(), charset=charset, speed=speed, iterations=nit)
 
 
-if __name__ == '__main__':
-    # for debugging >.\cli.py testing
-    cli()
+# for debugging >.\cli.py testing
+# if __name__ == '__main__':
+#     cli()

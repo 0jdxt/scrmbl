@@ -7,11 +7,7 @@ import click
 random.seed()
 
 ALL_CHARS = string.digits + string.ascii_letters + string.punctuation
-try:
-    COLS, _ = click.get_terminal_size()
-except OSError:  # not being run from terminal
-    raise click.UsageError('Please run from a terminal.')
-
+COLS, _ = click.get_terminal_size()
 
 def echo(message: str, charset: str = ALL_CHARS, speed: float = 0.05,
          iterations: int = 2) -> None:

@@ -51,4 +51,4 @@ def test_charset():
     assert result.exit_code == 0
     for line in result.output.split('\r'):
         if line:
-            assert re.match(r'^[tes]{0,4}[abcdefgh]?$', line)
+            assert re.match(r'^[tes]{0,4}[abcdefg]?$', line)
