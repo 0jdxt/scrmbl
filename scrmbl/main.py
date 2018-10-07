@@ -29,10 +29,11 @@ def echo(message: str, charset: str = ALL_CHARS, speed: float = 0.05,
                 ran_char = random.choice(charset)
                 click.echo('\r{0}{1}'.format(echoed, ran_char), nl=False)
                 time.sleep(speed)
-
             echoed += char
+
             # this logic is so lines longer than the console wrap around
             if len(echoed) >= COLS - 1:
                 click.echo('\r' + echoed)
                 echoed = ''
-        click.echo('\r' + echoed)
+        if echoed:
+            click.echo('\r' + echoed)
